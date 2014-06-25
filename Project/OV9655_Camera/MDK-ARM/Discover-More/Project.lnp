@@ -1,0 +1,25 @@
+--cpu Cortex-M4.fp
+".\discover-more\main.o"
+".\discover-more\stm32f4xx_it.o"
+".\discover-more\system_stm32f4xx.o"
+".\discover-more\dcmi_ov9655.o"
+".\discover-more\usart.o"
+".\discover-more\dct.o"
+".\discover-more\jpegenc.o"
+".\discover-more\stm32f4_discovery.o"
+".\discover-more\stm32f4xx_usart.o"
+".\discover-more\misc.o"
+".\discover-more\stm32f4xx_dcmi.o"
+".\discover-more\stm32f4xx_dma.o"
+".\discover-more\stm32f4xx_exti.o"
+".\discover-more\stm32f4xx_fsmc.o"
+".\discover-more\stm32f4xx_gpio.o"
+".\discover-more\stm32f4xx_rcc.o"
+".\discover-more\stm32f4xx_spi.o"
+".\discover-more\stm32f4xx_syscfg.o"
+".\discover-more\stm32f4xx_i2c.o"
+".\discover-more\startup_stm32f4xx.o"
+--library_type=microlib --strict --scatter ".\Discover-More\Project.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Discover-More\Project.map" -o .\Discover-More\Project.axf
