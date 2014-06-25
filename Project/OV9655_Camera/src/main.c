@@ -19,7 +19,7 @@
 /** @addtogroup DCMI_OV9655_Camera
   * @{
   */ 
-
+#define YUVDEBUG
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define DCMI_DR_ADDRESS     0x50050028
@@ -74,7 +74,7 @@ int main(void)
        system_stm32f4xx.c file
      */
   /* SysTick end of count event each 10ms */
-    
+#ifndef  YUVDEBUG
   unsigned int line;
 		enum {
         TYPE_UNKNOWN=0,
@@ -82,6 +82,8 @@ int main(void)
         TYPE_RGB16,
         TYPE_YUV,
     } image_type = TYPE_UNKNOWN;
+    image_type = TYPE_YUV;
+#endif   
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
   
@@ -89,7 +91,7 @@ int main(void)
     
     USART_puts(USART2,"\nLoaded,");
     
-    image_type = TYPE_YUV;
+    
 
     frame_done=0;
 //  LIS302DL_Reset();
@@ -143,25 +145,31 @@ int main(void)
       //for(i=0;i<1000;i++);
         
       if (frame_done) {
-//          char s[5];
-           char s[5];
+          char s[5];
+
+          int i;
           fr++;
             
-//          USART_puts(USART2,"\nNewFrame\n");
+//          
       
 //          if (capture_Flag == ENABLE) {
           DCMI_CaptureCmd(DISABLE);
+#ifndef YUVDEBUG
             USART_puts(USART2,"\njpeg2\n");
         huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
         huffman_resetdc();
+#endif
 //	USART_puts(USART2,"\njpeg\n");
-//          
-//          for(i=0;i<FULLIMAGESIZE;i++){
-//              sprintf(s,",%x",imagearray[i]);
-//              USART_puts(USART2,s);
-//              //USART_writebyte(USART2,&imagearray[i]);
-//          
-//            }
+//         
+#ifdef YUVDEBUG  
+            USART_puts(USART2,"\nNewFrame\n");
+          for(i=0;i<FULLIMAGESIZE;i++){
+              sprintf(s,",%x",imagearray[i]);
+              USART_puts(USART2,s);
+              //USART_writebyte(USART2,&imagearray[i]);
+          
+            }
+#endif
 //          
 //          USART_puts(USART2,"\nDone");
 //          capture_Flag = DISABLE;
@@ -172,6 +180,8 @@ int main(void)
 //          capture_Flag = ENABLE;
 //        }	
 //	USART_puts(USART2,"\njpeg2\n");
+
+#ifndef YUVDEBUG
             for (line=0; line<NUM_LINES; line++) {
                 uint8_t* line_buffer=(uint8_t *)&(imagearray[line*(IMG_WIDTH*IMG_HEIGHT*2/NUM_LINES)]);
                 // encode the line using appropriate encoder
@@ -187,9 +197,9 @@ int main(void)
             }
                    // write .jpeg footer (end-of-image marker)
             huffman_stop();
-           
-            sprintf(s,",%d",fr);
-            USART_puts(USART2,s);
+#endif    
+//            sprintf(s,",%d",fr);
+//            USART_puts(USART2,s);
 //USART_puts(USART2,"\njpegends\n");
             
            DCMI_CaptureCmd(ENABLE);

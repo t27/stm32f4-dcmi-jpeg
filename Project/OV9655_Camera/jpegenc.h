@@ -9,12 +9,10 @@
 
 
 #define ENABLE_WATERMARK (0)
-#ifndef IMGWHL 
-#define IMGWHL
-#define IMG_WIDTH   (180)   //
-#define IMG_HEIGHT  (120)   //
+
+#include "resolution.h"
 #define NUM_LINES   (IMG_HEIGHT/8)    // number of lines in image= hieght/8
-#endif
+
 
 //---------------- J P E G ---------------
 

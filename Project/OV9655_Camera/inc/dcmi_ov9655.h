@@ -365,9 +365,7 @@ typedef struct
 #define OEN_TRI_SEL_ALL_OFF_r0	0x06 /* All tri-stated for Rev0 */
 #define OEN_TRI_SEL_ALL_OFF_r1	0x07 /* All tri-stated for Rev1 */
 
-#define IMAGE_WIDTH (180)
-#define IMAGE_HEIGHT (120)
-#define FULLIMAGESIZE ( IMAGE_WIDTH * IMAGE_HEIGHT )
+#include "resolution.h"
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void DCMI_Control_IO_Init(void);

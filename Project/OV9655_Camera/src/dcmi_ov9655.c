@@ -108,7 +108,7 @@ void DCMI_OV9655_QVGASizeSetup(void)
     //write 0x400 to both hscale,vscale
     DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,HSCALE_LO,0x00);
     DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,VSCALE_LO,0x00);
-    DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,SCALE_HI,0x24);
+    DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,SCALE_HI,0x22);
     //Setup image size over here!!!!
     
 }

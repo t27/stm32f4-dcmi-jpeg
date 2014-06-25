@@ -41,6 +41,7 @@
 .\discover-more\main.o: ..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery_lis302dl.h
 .\discover-more\main.o: ..\inc\main.h
 .\discover-more\main.o: ..\inc\dcmi_ov9655.h
+.\discover-more\main.o: ..\resolution.h
 .\discover-more\main.o: ..\inc\usart.h
 .\discover-more\main.o: ..\dct.h
 .\discover-more\main.o: ..\jpegenc.h

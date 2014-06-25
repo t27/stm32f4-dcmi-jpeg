@@ -1,3 +1,6 @@
+
+The project documentation has not started yet, nevertheless, if you have to use a part of it, please contact the repo owner for help.
+ORIGINAL README - Project has been highly modified. 
 /**
   @page OV9655_Camera Camera example Readme file
   

@@ -35,4 +35,5 @@
 .\discover-more\dcmi_ov9655.o: ..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 .\discover-more\dcmi_ov9655.o: ..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\discover-more\dcmi_ov9655.o: ..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
+.\discover-more\dcmi_ov9655.o: ..\resolution.h
 .\discover-more\dcmi_ov9655.o: ..\inc\main.h
