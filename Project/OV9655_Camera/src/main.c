@@ -19,13 +19,12 @@
 /** @addtogroup DCMI_OV9655_Camera
   * @{
   */ 
-#define YUVDEBUG
+//#define YUVDEBUG
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define DCMI_DR_ADDRESS     0x50050028
 #define FSMC_LCD_ADDRESS    0x60100000
-//#define IMG_HEIGHT (120)
-//#define IMG_WIDTH (180)
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 uint8_t KeyPressFlg = 0;
@@ -52,14 +51,11 @@ void LIS302DL_Reset(void);
 void write_jpeg(const unsigned char * _buffer,const unsigned int    _n)
 {
    //write data to output file
-   //write(file_jpg, _buffer, _n);
-   //fwrite(_buffer, sizeof(uint8_t), _n, file_jpg);
 	int i=0;
 	char s[6];
 	while(i<_n){
 		sprintf(s,"%x,",_buffer[i]);
-        //USART_writebyte(USART1,_buffer[i]);
-		USART_puts(USART2,s);
+        USART_puts(USART2,s);
 		i++;
 	}
 	;
@@ -76,13 +72,6 @@ int main(void)
   /* SysTick end of count event each 10ms */
 #ifndef  YUVDEBUG
   unsigned int line;
-		enum {
-        TYPE_UNKNOWN=0,
-        TYPE_RGB24,
-        TYPE_RGB16,
-        TYPE_YUV,
-    } image_type = TYPE_UNKNOWN;
-    image_type = TYPE_YUV;
 #endif   
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
@@ -94,37 +83,20 @@ int main(void)
     
 
     frame_done=0;
-//  LIS302DL_Reset();
 
-  /* SET USER Key */
-  /* Configure EXTI Line0 (connected to PA0 pin) in interrupt mode */
-//  EXTILine0_Config();
-
-//  /* Initialize the LCD */
-//  STM32f4_Discovery_LCD_Init();
-//  LCD_Clear(LCD_COLOR_WHITE);
-//  LCD_SetTextColor(LCD_COLOR_BLUE);
-
-//  DCMI_Control_IO_Init();//funtion to configure reset and power pins of the camera **dont need for tw9910
-
-//  LCD_DisplayStringLine(LINE(2), "   Camera Init..");
 		   
-  /* OV9655 Camera Module configuration */
+  /*Camera configuration */
   
   // ****INIT the TW9910 in the following function
   if (DCMI_OV9655Config() == 0x00)//configures pins of DCMI,I2C and DMA and the camera settings, if it returns a positive response
   {
       //Successful
-      int fr=0;
+    int fr=0;
     USART_puts(USART2,"In TW9910\n");
-//    LCD_DisplayStringLine(LINE(2), "                ");
-//    LCD_SetDisplayWindow(0, 0, 320, 240);
-//    LCD_WriteRAM_Prepare();
-      
-    //initialise an array here for the Image and ensure it is set up in the DMA configuration
+
 
     /* Enable DMA transfer */
-     DMA_Cmd(DMA2_Stream1, ENABLE);
+    DMA_Cmd(DMA2_Stream1, ENABLE);
 
     /* Enable DCMI interface */
     DCMI_Cmd(ENABLE); 
@@ -132,93 +104,54 @@ int main(void)
     /* Start Image capture */ 
     DCMI_CaptureCmd(ENABLE);   
 
-    /*init the picture count*/ //useless for tw9910 and our case
-    //init_picture_count(); // a function to initialise a variable from a counter file in the sdcard to name the new bmp file and file-xxx.bmp
-      
-       
-    
     while (1)
     {
-//        int i;
-      //Delay(50);
-//      int i;
-      //for(i=0;i<1000;i++);
+//    int i;
+//    Delay(50);
         
       if (frame_done) {
           char s[5];
 
           int i;
           fr++;
-            
-//          
-      
-//          if (capture_Flag == ENABLE) {
+
           DCMI_CaptureCmd(DISABLE);
 #ifndef YUVDEBUG
-            USART_puts(USART2,"\njpeg2\n");
+        USART_puts(USART2,"\njpeg2\n");
         huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
         huffman_resetdc();
 #endif
-//	USART_puts(USART2,"\njpeg\n");
-//         
+         
 #ifdef YUVDEBUG  
-            USART_puts(USART2,"\nNewFrame\n");
-          for(i=0;i<FULLIMAGESIZE;i++){
-              sprintf(s,",%x",imagearray[i]);
-              USART_puts(USART2,s);
-              //USART_writebyte(USART2,&imagearray[i]);
-          
-            }
+        USART_puts(USART2,"\nNewFrame\n");
+      for(i=0;i<FULLIMAGESIZE*2;i++){
+          sprintf(s,",%x",imagearray[i]);
+          USART_puts(USART2,s);     
+        }
 #endif
-//          
-//          USART_puts(USART2,"\nDone");
-//          capture_Flag = DISABLE;
-//         // Capture_Image_TO_Bmp();
-////          LCD_SetDisplayWindow(0, 0, 320, 240);
-////          LCD_WriteRAM_Prepare();
-          
-//          capture_Flag = ENABLE;
-//        }	
-//	USART_puts(USART2,"\njpeg2\n");
 
 #ifndef YUVDEBUG
             for (line=0; line<NUM_LINES; line++) {
-                uint8_t* line_buffer=(uint8_t *)&(imagearray[line*(IMG_WIDTH*IMG_HEIGHT*2/NUM_LINES)]);
-                // encode the line using appropriate encoder
-                switch (image_type) {
-                // case TYPE_RGB24:    encode_line_rgb24(line_buffer, line); break;
-                // case TYPE_RGB16:    encode_line_rgb16(line_buffer, line); break;
-                case TYPE_YUV:      encode_line_yuv(line_buffer,   line); break;
-                case TYPE_UNKNOWN:
-                default:break;
-                   // fprintf(stderr, "error: %s, unsupported encoder for input '%s'\n", argv[0], argv[1]);
-                   // exit(1);
-                }
+                uint8_t* line_buffer=(uint8_t *)&(imagearray[line*(IMG_WIDTH*8*2)]);
+                // encode the line using encoder
+               encode_line_yuv(line_buffer,   line);
             }
-                   // write .jpeg footer (end-of-image marker)
+           // write .jpeg footer (end-of-image marker)
             huffman_stop();
-#endif    
+#endif  
+// /* print the frame counter */            
 //            sprintf(s,",%d",fr);
 //            USART_puts(USART2,s);
 //USART_puts(USART2,"\njpegends\n");
             
            DCMI_CaptureCmd(ENABLE);
-             frame_done = 0;
-
-            
-            
-            //if(fr==2)
-                //while(1);
+           frame_done = 0;
       
       }
     }  
-  } else {
-//    LCD_SetTextColor(LCD_COLOR_RED);
-
-//    LCD_DisplayStringLine(LINE(2), "Camera Init.. fails");    
-//    LCD_DisplayStringLine(LINE(4), "Check the Camera HW ");    
-//    LCD_DisplayStringLine(LINE(5), "  and try again ");
-
+  }
+  else {// Cant INIT the TW9910 
+    USART_puts(USART2,"Cant Init TW9910");
     /* Go to infinite loop */
     while (1);      
   }
@@ -239,49 +172,49 @@ uint8_t DCMI_OV9655Config(void)
   /* I2C1 will be used for camera configuration */
   I2C1_Config();  
 //  - Read ID and check
-    readvalue=DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,ID);
+    readvalue=DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,ID);
     sprintf(str,"ID=%x,",readvalue);
     USART_puts(USART2,str);
     
     
 //- Write opform register
     //Mode=0, Len=0, rest default
-    tw9910_mask_set(OV9655_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x00|OEN_TRI_SEL_ALL_ON);
+    tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x00|OEN_TRI_SEL_ALL_ON);
     
     
 //- set resolution(vscale,hscale or vactive,hactive and vdelay hdelay)
       /* OV9655 Camera size setup */    
-  DCMI_OV9655_QVGASizeSetup();
+  DCMI_TW9910_SizeSetup();
     
 
 
 
 
 //- write the hsync vsync pin configuration(output control 0x05)
- DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OUTCTR1, 0x02);//**0x11,0x01,0x10?
+ DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS, OUTCTR1, 0x02);//**0x11,0x01,0x10?
  //- write clock
- DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OUTCTR2, 0x00);
+ DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS, OUTCTR2, 0x00);
 
 //- write vbi control register for invalid bit settings and Hactive enable
-tw9910_mask_set(OV9655_DEVICE_WRITE_ADDRESS,VBICNTL,0x18, 0x18);//Enable HA_EN**0,1? and cntl656
+tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS,VBICNTL,0x18, 0x18);//Enable HA_EN**0,1? and cntl656
 
 
 //- read and print status registers(Nicely! - normal status, detected format etc.)
-    readvalue=DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,STATUS1);
+    readvalue=DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,STATUS1);
     sprintf(str,"St1=%x,",readvalue);
     USART_puts(USART2,str);
-    while((DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,STATUS1)&~0x10)!=0x68){
+    while((DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,STATUS1)&~0x10)!=0x68){
     
         
         Delay(10);
     }
-    readvalue=DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,STATUS1);
+    readvalue=DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,STATUS1);
     sprintf(str,"St1=%x,",readvalue);
 //    USART_puts(USART2,str);
-    readvalue=DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,STATUS2);
+    readvalue=DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,STATUS2);
     sprintf(str,"St2=%x,",readvalue);
     USART_puts(USART2,str);
-    readvalue=DCMI_SingleRandomRead(OV9655_DEVICE_READ_ADDRESS,SDT);
+    readvalue=DCMI_SingleRandomRead(TW9910_DEVICE_READ_ADDRESS,SDT);
     sprintf(str,"Sdt=%x\n",readvalue);
     USART_puts(USART2,str);
 
@@ -454,7 +387,7 @@ void DMA2_Stream1_IRQHandler(void)
   if(DMA_GetITStatus(DMA2_Stream1,DMA_IT_TCIF1))
   {  
       if(!frame_done){   
-      USART_puts(USART2,"In INTR");
+      USART_puts(USART2,"\nIn INTR\n");
       frame_done=1;
      }
 		DMA_ClearITPendingBit(DMA2_Stream1, DMA_IT_TCIF1);

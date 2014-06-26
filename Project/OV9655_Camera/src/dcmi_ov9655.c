@@ -25,7 +25,7 @@
 #include "dcmi_ov9655.h"
 #include "main.h"
 
-/** @addtogroup DCMI_OV9655_Camera
+/** @addtogroup DCMI_Camera
   * @{
   */
 
@@ -33,148 +33,26 @@
 /* Private define ------------------------------------------------------------*/
 #define  TIMEOUT  2
 
-//#define  CAMERA_RST_PIN			  GPIO_Pin_12	
-//#define  CAMERA_RST_PORT		  GPIOD
-
-//#define  CAMERA_PWR_EN_PIN		GPIO_Pin_6
-//#define  CAMERA_PWR_EN_PROT		GPIOD
-
 /* Bits definitions ----------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
-/*
-******************************************************************************
-  Function:       DCMI_Control_IO_Init
-  Description:    Init DCMI module power control
-  Calls:          void
-  Called By:      
-  Input:          void
-  Output:         void
-  Return:         
-  Others:         
-******************************************************************************
-*/
-//void DCMI_Control_IO_Init(void)
-//{
-//  GPIO_InitTypeDef GPIO_InitStructure;
-
-//  /* Enable GPIOD clocks */
-//  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
-//  /* camera RST pin configuration */
-//  GPIO_InitStructure.GPIO_Pin = CAMERA_RST_PIN; 
-//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-//  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-//  GPIO_Init(CAMERA_RST_PORT, &GPIO_InitStructure);
-//  /*Reset camera*/
-//  GPIO_ResetBits(CAMERA_RST_PORT, CAMERA_RST_PIN);
-//  Delay(10);
-//  GPIO_SetBits(CAMERA_RST_PORT, CAMERA_RST_PIN);
-
-//  /* camera PWR EN pin configuration */
-//  GPIO_InitStructure.GPIO_Pin = CAMERA_PWR_EN_PIN; 
-//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-//  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-
-//  GPIO_Init(CAMERA_PWR_EN_PROT, &GPIO_InitStructure);
-//  GPIO_ResetBits(CAMERA_PWR_EN_PROT, CAMERA_PWR_EN_PIN);
-//}
-
- 
 /**
-  * @brief  Reset the OV9655 SCCB registers.
+  * @brief  Set the size.
   * @param  None
   * @retval None
   */
-//void DCMI_OV9655_Reset(void)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_COM7, SCCB_REG_RESET);    
-//}
-
-/**
-  * @brief  Set the QVGA size(240*320).
-  * @param  None
-  * @retval None
-  */
-void DCMI_OV9655_QVGASizeSetup(void)
+void DCMI_TW9910_SizeSetup(void)
 {  
     //write 0x400 to both hscale,vscale
-    DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,HSCALE_LO,0x00);
-    DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,VSCALE_LO,0x00);
-    DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS,SCALE_HI,0x22);
+    DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,HSCALE_LO,0x00);
+    DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,VSCALE_LO,0x00);
+    DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,SCALE_HI,0x22);
     //Setup image size over here!!!!
     
 }
-
-/**
-  * @brief  Set the QQVGA size(120*160).
-  * @param  None
-  * @retval None
-  */
-void DCMI_OV9655_QQVGASizeSetup(void)
-{
-  //set up small image size over here!!
-}
-
-/**
-  * @brief  Read the OV9655 Manufacturer identifier.
-  * @param  OV9655ID: pointer to the OV9655 Manufacturer identifier. 
-  * @retval None
-  */
-//void DCMI_OV9655_ReadID(OV9655_IDTypeDef* OV9655ID)
-//{
-//  OV9655ID->Manufacturer_ID1 = DCMI_SingleRandomRead(OV9655_DEVICE_WRITE_ADDRESS, OV9655_MIDH);
-//  OV9655ID->Manufacturer_ID2 = DCMI_SingleRandomRead(OV9655_DEVICE_WRITE_ADDRESS, OV9655_MIDL);
-//  OV9655ID->Version = DCMI_SingleRandomRead(OV9655_DEVICE_WRITE_ADDRESS, OV9655_VER);
-//  OV9655ID->PID = DCMI_SingleRandomRead(OV9655_DEVICE_WRITE_ADDRESS, OV9655_PID);
-//}
-
-/**
-  * @brief  Set the Internal Clock Prescaler.
-  * @param  OV9655_Prescaler: the new value of the prescaler. 
-  *         This parameter can be a value between 0x0 and 0x1F
-  * @retval None
-  */
-//void DCMI_OV9655_SetPrescaler(uint8_t OV9655_Prescaler)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_CLKRC, OV9655_Prescaler);
-//}
-
-/**
-  * @brief  Select the Output Format.
-  * @param  OV9655_OuputFormat: the Format of the ouput Data.  
-  *         This parameter can be one of the following values:
-  *           @arg OUTPUT_FORMAT_RAWRGB_DATA 
-  *           @arg OUTPUT_FORMAT_RAWRGB_INTERP    
-  *           @arg OUTPUT_FORMAT_YUV              
-  *           @arg OUTPUT_FORMAT_RGB    
-  * @retval None
-  */
-//void DCMI_OV9655_SelectOutputFormat(uint8_t OV9655_OuputFormat)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_COM7, OV9655_OuputFormat);
-//}
-
-/**
-  * @brief  Select the Output Format Resolution.
-  * @param  OV9655_FormatResolution: the Resolution of the ouput Data. 
-  *         This parameter can be one of the following values:
-  *           @arg FORMAT_CTRL_15fpsVGA 
-  *           @arg FORMAT_CTRL_30fpsVGA_NoVArioPixel    
-  *           @arg FORMAT_CTRL_30fpsVGA_VArioPixel     
-  * @retval None
-  */
-//void DCMI_OV9655_SelectFormatResolution(uint8_t OV9655_FormatResolution)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_COM7, OV9655_FormatResolution);
-//}
 
 /**
   * @brief  Set the new value of OV9655 registers
@@ -184,36 +62,9 @@ void DCMI_OV9655_QQVGASizeSetup(void)
   */
 void DCMI_OV9655_SetRegister(uint8_t OV9655_Register, uint8_t Register_Val)
 {
-  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_Register, Register_Val);
+  DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS, OV9655_Register, Register_Val);
 }
 
-/**
-  * @brief  Select the HREF Control signal option
-  * @param  OV9665_HREFControl: the HREF Control signal option.
-  *         This parameter can be one of the following value:
-  *           @arg OV9665_HREFControl_Opt1: HREF edge offset to data output. 
-  *           @arg OV9665_HREFControl_Opt2: HREF end 3 LSB    
-  *           @arg OV9665_HREFControl_Opt3: HREF start 3 LSB      
-  * @retval None
-  */
-//void DCMI_OV9655_HREFControl(uint8_t OV9665_HREFControl)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_HREF, OV9665_HREFControl);
-//}
-
-/**
-  * @brief  Select the RGB format option
-  * @param  OV9665_RGBOption: the RGB Format option.
-  *         This parameter can be one of the following value:
-  *           @arg RGB_NORMAL
-  *           @arg RGB_565  
-  *           @arg RGB_555    
-  * @retval None
-  */
-//void DCMI_OV9655_SelectRGBOption(uint8_t OV9665_RGBOption)
-//{
-//  DCMI_SingleRandomWrite(OV9655_DEVICE_WRITE_ADDRESS, OV9655_COM15, OV9665_RGBOption);
-//}
 
 /**
   * @brief  Writes a byte at a specific Camera register

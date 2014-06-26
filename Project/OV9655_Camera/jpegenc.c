@@ -444,11 +444,15 @@ static void write_DHTinfo(void)
 //  between RSTn markers in macroblocks
 static void write_DRIinfo(void)
 {
+    int frame_adjust=0;
 	writeword(0xFFDD);  // write DRI (define restart interval) marker
     writeword(4);       // DRI Lr segment length (4 bytes total)
-	writeword(IMG_WIDTH/16);      // restart interval is 40 MCUs (each MCU is 16
-                        // pixels wide, which for an image 640 pixels
-                        // wide is 640/16 = 40 MCUs
+    if(IMG_WIDTH%8==0 && IMG_WIDTH%16!=0)
+        frame_adjust=1;
+	writeword(IMG_WIDTH/16 + frame_adjust);      // restart interval is 40 MCUs (each MCU is 16 pixels wide, which for an image 640 pixels wide is 640/16 = 40 MCUs
+    /* IMG_WIDTH%16?0:1 is needed because if width is not a multiple of 16 but a multiple of 8(eg.360) then the restart interval needs to be 1 more than what integer division gives
+      */                  
+                        
 }
 
 /******************************************************************************

@@ -1,5 +1,5 @@
 Dependencies for Project 'Project', Target 'Discover-More': (DO NOT MODIFY !)
-F (..\src\main.c)(0x53AAAF6F)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\main.o --omf_browse .\discover-more\main.crf --depend .\discover-more\main.d)
+F (..\src\main.c)(0x53ABCA2F)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\main.o --omf_browse .\discover-more\main.crf --depend .\discover-more\main.d)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7DA6C)
 I (..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5137CF1A)
 I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x539ED68F)
@@ -39,9 +39,9 @@ I (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x5137CF18)
 I (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery_lcd.h)(0x5137CF18)
 I (..\..\..\Utilities\STM32F4-Discovery\fonts.h)(0x5137CF18)
 I (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery_lis302dl.h)(0x5137CF18)
-I (..\inc\main.h)(0x5137CF14)
-I (..\inc\dcmi_ov9655.h)(0x53AAA694)
-I (..\resolution.h)(0x53AAA7D0)
+I (..\inc\main.h)(0x53AAB71C)
+I (..\inc\dcmi_ov9655.h)(0x53ABA616)
+I (..\resolution.h)(0x53ABC4E6)
 I (..\inc\usart.h)(0x53A11EB9)
 I (..\dct.h)(0x537EC9F0)
 I (..\jpegenc.h)(0x53AAA68B)
@@ -81,7 +81,7 @@ I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x5137CF1A
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x5137CF1A)
-I (..\inc\main.h)(0x5137CF14)
+I (..\inc\main.h)(0x53AAB71C)
 I (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery_sdio_sd.h)(0x5137CF18)
 I (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x5137CF18)
 F (..\src\system_stm32f4xx.c)(0x5137CF14)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\system_stm32f4xx.o --omf_browse .\discover-more\system_stm32f4xx.crf --depend .\discover-more\system_stm32f4xx.d)
@@ -119,8 +119,8 @@ I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x5137CF1A
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x5137CF1A)
-F (..\src\dcmi_ov9655.c)(0x53AAA86C)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\dcmi_ov9655.o --omf_browse .\discover-more\dcmi_ov9655.crf --depend .\discover-more\dcmi_ov9655.d)
-I (..\inc\dcmi_ov9655.h)(0x53AAA694)
+F (..\src\dcmi_ov9655.c)(0x53ABD28C)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\dcmi_ov9655.o --omf_browse .\discover-more\dcmi_ov9655.crf --depend .\discover-more\dcmi_ov9655.d)
+I (..\inc\dcmi_ov9655.h)(0x53ABA616)
 I (..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5137CF1A)
 I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x539ED68F)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5386D6E0)
@@ -155,8 +155,8 @@ I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x5137CF1A
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x5137CF1A)
 I (..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x5137CF1A)
-I (..\resolution.h)(0x53AAA7D0)
-I (..\inc\main.h)(0x5137CF14)
+I (..\resolution.h)(0x53ABC4E6)
+I (..\inc\main.h)(0x53AAB71C)
 F (..\src\usart.c)(0x53A11E1C)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\usart.o --omf_browse .\discover-more\usart.crf --depend .\discover-more\usart.d)
 I (..\inc\usart.h)(0x53A11EB9)
 I (..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5137CF1A)
@@ -198,11 +198,11 @@ F (..\dct.c)(0x537EC9F0)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --ap
 I (..\dct.h)(0x537EC9F0)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5386D6E0)
 F (..\dct.h)(0x537EC9F0)()
-F (..\jpegenc.c)(0x53AAA589)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\jpegenc.o --omf_browse .\discover-more\jpegenc.crf --depend .\discover-more\jpegenc.d)
+F (..\jpegenc.c)(0x53ABD066)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\jpegenc.o --omf_browse .\discover-more\jpegenc.crf --depend .\discover-more\jpegenc.d)
 I (..\dct.h)(0x537EC9F0)
 I (C:\Keil\ARM\ARMCC\include\stdint.h)(0x5386D6E0)
 I (..\jpegenc.h)(0x53AAA68B)
-I (..\resolution.h)(0x53AAA7D0)
+I (..\resolution.h)(0x53ABC4E6)
 F (..\jpegenc.h)(0x53AAA68B)()
 F (.\resolution.h)(0x00000000)()
 F (..\..\..\Utilities\STM32F4-Discovery\stm32f4_discovery.c)(0x5396C237)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O1 --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\stm32f4_discovery.o --omf_browse .\discover-more\stm32f4_discovery.crf --depend .\discover-more\stm32f4_discovery.d)
