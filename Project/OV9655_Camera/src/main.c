@@ -19,7 +19,7 @@
 /** @addtogroup DCMI_OV9655_Camera
   * @{
   */ 
-//#define YUVDEBUG
+#define YUVDEBUG
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define DCMI_DR_ADDRESS     0x50050028
@@ -118,9 +118,11 @@ int main(void)
           DCMI_CaptureCmd(DISABLE);
 #ifndef YUVDEBUG
         USART_puts(USART2,"\njpeg2\n");
-        huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
-        huffman_resetdc();
+         huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
+       huffman_resetdc();
+       
 #endif
+          
          
 #ifdef YUVDEBUG  
         USART_puts(USART2,"\nNewFrame\n");
@@ -179,7 +181,7 @@ uint8_t DCMI_OV9655Config(void)
     
 //- Write opform register
     //Mode=0, Len=0, rest default
-    tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x00|OEN_TRI_SEL_ALL_ON);
+    tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x40|OEN_TRI_SEL_ALL_ON);
     
     
 //- set resolution(vscale,hscale or vactive,hactive and vdelay hdelay)
@@ -353,7 +355,7 @@ void DCMI_Config(void)
   DMA_InitStructure.DMA_PeripheralBaseAddr = DCMI_DR_ADDRESS;	
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)imagearray;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  DMA_InitStructure.DMA_BufferSize = (FULLIMAGESIZE*2*2)/4;
+  DMA_InitStructure.DMA_BufferSize = (FULLIMAGESIZE*2)/4;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;

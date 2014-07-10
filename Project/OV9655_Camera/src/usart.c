@@ -29,25 +29,30 @@ void init_USART1(uint32_t baudrate){
 	/* enable the peripheral clock for the pins used by 
 	 * USART1, PB6 for TX and PB7 for RX
 	 */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
+    /* The RX and TX pins are now connected to their AF
+	 * so that the USART1 can take over control of the 
+	 * pins
+	 */
+    GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
+    
+    
 	/* This sequence sets up the TX and RX pins 
 	 * so they work correctly with the USART1 peripheral
 	 */
 //	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7; // Pins 6 (TX) and 7 (RX) are used
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF; 			// the pins are configured as alternate function so the USART peripheral has access to them
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		// this defines the IO speed and has nothing to do with the baudrate!
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			// this defines the output type as push pull mode (as opposed to open drain)
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			// this activates the pullup resistors on the IO pins
-	GPIO_Init(GPIOD, &GPIO_InitStruct);					// now all the values are passed to the GPIO_Init() function which sets the GPIO registers
+	GPIO_Init(GPIOA, &GPIO_InitStruct);					// now all the values are passed to the GPIO_Init() function which sets the GPIO registers
 
-	/* The RX and TX pins are now connected to their AF
-	 * so that the USART1 can take over control of the 
-	 * pins
-	 */
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource5, GPIO_AF_USART2); //
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource6, GPIO_AF_USART2);
+	
+	//USART_DeInit(USART2);
+    //USART_Cmd(USART2,ENABLE);
 
 	/* Now the USART_InitStruct is used to define the 
 	 * properties of USART1 
@@ -58,7 +63,8 @@ void init_USART1(uint32_t baudrate){
 	USART_InitStruct.USART_Parity = USART_Parity_No;		// we don't want a parity bit (standard)
 	USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None; // we don't want flow control (standard)
 	USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx; // we want to enable the transmitter and the receiver
-	USART_Init(USART2, &USART_InitStruct);					// again all the properties are passed to the USART_Init function which takes care of all the bit setting
+	
+    USART_Init(USART2, &USART_InitStruct);					// again all the properties are passed to the USART_Init function which takes care of all the bit setting
 
 
 	/* Here the USART1 receive interrupt is enabled

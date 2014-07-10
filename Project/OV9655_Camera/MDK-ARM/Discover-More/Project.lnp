@@ -6,6 +6,7 @@
 ".\discover-more\usart.o"
 ".\discover-more\dct.o"
 ".\discover-more\jpegenc.o"
+".\discover-more\parallelport.o"
 ".\discover-more\stm32f4_discovery.o"
 ".\discover-more\stm32f4xx_usart.o"
 ".\discover-more\misc.o"

@@ -448,6 +448,16 @@
               <FileType>5</FileType>
               <FilePath>..\jpegenc.h</FilePath>
             </File>
+            <File>
+              <FileName>resolution.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\resolution.h</FilePath>
+            </File>
+            <File>
+              <FileName>parallelport.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\parallelport.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
