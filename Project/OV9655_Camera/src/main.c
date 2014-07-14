@@ -19,7 +19,7 @@
 /** @addtogroup DCMI_OV9655_Camera
   * @{
   */ 
-#define YUVDEBUG
+//#define YUVDEBUG
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define DCMI_DR_ADDRESS     0x50050028
@@ -134,7 +134,12 @@ int main(void)
 
 #ifndef YUVDEBUG
             for (line=0; line<NUM_LINES; line++) {
+                #ifndef GRAYSCALE
                 uint8_t* line_buffer=(uint8_t *)&(imagearray[line*(IMG_WIDTH*8*2)]);
+                #endif
+                #ifdef GRAYSCALE
+                uint8_t* line_buffer=(uint8_t *)&(imagearray[line*(IMG_WIDTH*8)]);
+                #endif
                 // encode the line using encoder
                encode_line_yuv(line_buffer,   line);
             }
@@ -181,8 +186,12 @@ uint8_t DCMI_OV9655Config(void)
     
 //- Write opform register
     //Mode=0, Len=0, rest default
+    #ifndef GRAYSCALE
+    tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x00|OEN_TRI_SEL_ALL_ON);
+    #endif
+    #ifdef GRAYSCALE
     tw9910_mask_set(TW9910_DEVICE_WRITE_ADDRESS, OPFORM, opmask, 0x40|OEN_TRI_SEL_ALL_ON);
-    
+    #endif
     
 //- set resolution(vscale,hscale or vactive,hactive and vdelay hdelay)
       /* OV9655 Camera size setup */    

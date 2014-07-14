@@ -1,6 +1,7 @@
 #ifndef IMGWHL 
 #define IMGWHL
-#define IMG_WIDTH (180)
-#define IMG_HEIGHT (120)
-#define FULLIMAGESIZE ( IMG_WIDTH * IMG_HEIGHT )
+#define IMG_WIDTH (360)
+#define IMG_HEIGHT (240)
+#define FULLIMAGESIZE ( IMG_WIDTH * IMG_HEIGHT/2) //halving just for BW compatibility
+#define GRAYSCALE
 #endif
