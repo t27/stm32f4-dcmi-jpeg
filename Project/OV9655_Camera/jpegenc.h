@@ -68,9 +68,6 @@ void encode_line_yuv(uint8_t *    _line_buffer,
 //  _rsi    :   3-bit restart interval character [0..7]
 void write_RSI(unsigned int _rsi);
 
-#if ENABLE_WATERMARK
-// write VT watermark in Y8x8 lumiance array
-void embed_vt_watermark(void);
-#endif
+
 
 #endif//__JPEG_H__

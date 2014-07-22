@@ -76,11 +76,15 @@ int main(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
   
-    init_USART1(1048576);
+    init_USART1(2000000);//1048576);//
     
-    USART_puts(USART2,"\nLoaded,");
+    USART_puts(USART2,"\r\nLoaded,");
     
-    
+//    while(1){
+//        USART_puts(USART2,"jpeg2\n");
+//        USART_puts(USART2,"12,fd,ff,34,3f,f4,0,1,a,33,43,23,23,\n");
+//        Delay(100);
+//    }
 
     frame_done=0;
 
@@ -91,8 +95,8 @@ int main(void)
   if (DCMI_OV9655Config() == 0x00)//configures pins of DCMI,I2C and DMA and the camera settings, if it returns a positive response
   {
       //Successful
-    int fr=0;
-    USART_puts(USART2,"In TW9910\n");
+   // int fr=0;
+    USART_puts(USART2,"InTW9910\r\n");
 
 
     /* Enable DMA transfer */
@@ -110,14 +114,16 @@ int main(void)
 //    Delay(50);
         
       if (frame_done) {
+#ifdef YUVDEBUG 
           char s[5];
 
           int i;
-          fr++;
+ #endif
+          //fr++;
 
           DCMI_CaptureCmd(DISABLE);
 #ifndef YUVDEBUG
-        USART_puts(USART2,"\njpeg2\n");
+        USART_puts(USART2,"jpg\r\n");
          huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
        huffman_resetdc();
        
@@ -145,6 +151,7 @@ int main(void)
             }
            // write .jpeg footer (end-of-image marker)
             huffman_stop();
+            USART_puts(USART2,"\n");
 #endif  
 // /* print the frame counter */            
 //            sprintf(s,",%d",fr);
@@ -322,7 +329,7 @@ void DCMI_Config(void)
   /* D0 D1(PC6/7) */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure.GPIO_Speed =GPIO_Speed_100MHz;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;  
   GPIO_Init(GPIOC, &GPIO_InitStructure);
@@ -370,7 +377,7 @@ void DCMI_Config(void)
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
   DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
   DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
-  DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;         
   DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
   DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
@@ -398,7 +405,7 @@ void DMA2_Stream1_IRQHandler(void)
   if(DMA_GetITStatus(DMA2_Stream1,DMA_IT_TCIF1))
   {  
       if(!frame_done){   
-      USART_puts(USART2,"\nIn INTR\n");
+     // USART_puts(USART2,"INTR\n");
       frame_done=1;
      }
 		DMA_ClearITPendingBit(DMA2_Stream1, DMA_IT_TCIF1);

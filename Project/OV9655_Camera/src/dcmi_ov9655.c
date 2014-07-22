@@ -49,7 +49,8 @@ void DCMI_TW9910_SizeSetup(void)
     //write 0x400 to both hscale,vscale
     DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,HSCALE_LO,0x00);
     DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,VSCALE_LO,0x00);
-    DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,SCALE_HI,0x12);
+    DCMI_SingleRandomWrite(TW9910_DEVICE_WRITE_ADDRESS,SCALE_HI,0x12);//0x11==720x480, 0x22=360x240, 0x44=180x120 Interleaved vertically
+    //for smaller size non interleaved images, try doubling vertical resolution
     //Setup image size over here!!!!
     
 }
