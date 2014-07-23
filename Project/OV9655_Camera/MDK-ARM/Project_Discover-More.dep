@@ -1,5 +1,5 @@
 Dependencies for Project 'Project', Target 'Discover-More': (DO NOT MODIFY !)
-F (..\src\main.c)(0x53CF6BB9)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\main.o --omf_browse .\discover-more\main.crf --depend .\discover-more\main.d)
+F (..\src\main.c)(0x53CF8571)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 -Otime --apcs=interwork -I..\ -I..\..\..\Utilities\STM32F4-Discovery -I..\..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include -I..\..\..\Utilities\FatFs_vR0.08a -I..\inc-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\ST\STM32F4xx-DSTM32F4XX -DUSE_STDPERIPH_DRIVER -o .\discover-more\main.o --omf_browse .\discover-more\main.crf --depend .\discover-more\main.d)
 I (C:\Keil\ARM\ARMCC\include\stdio.h)(0x51C7DA6C)
 I (..\..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x53CE50DE)
 I (C:\Keil\ARM\CMSIS\Include\core_cm4.h)(0x539ED68F)

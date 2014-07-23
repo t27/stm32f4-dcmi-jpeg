@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Discover-More\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Discover-More\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Jul 23 13:31:05 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Wed Jul 23 15:21:04 2014
 <BR><P>
 <H3>Maximum Stack Usage =        216 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -172,7 +172,7 @@ Global Symbols
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_DeInit
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_Init
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 
 <P><STRONG><a name="[ae]"></a>Delay</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
@@ -187,8 +187,8 @@ Global Symbols
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_Init
 </UL>
 
-<P><STRONG><a name="[75]"></a>DCMI_OV9655Config</STRONG> (Thumb, 352 bytes, Stack size 48 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = DCMI_OV9655Config &rArr; DCMI_Config &rArr; DMA_DeInit
+<P><STRONG><a name="[75]"></a>DCMI_TW9910Config</STRONG> (Thumb, 352 bytes, Stack size 48 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = DCMI_TW9910Config &rArr; DCMI_Config &rArr; DMA_DeInit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tw9910_mask_set
 <LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_puts
@@ -223,7 +223,7 @@ Global Symbols
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DMA_Cmd
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_Cmd
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_CaptureCmd
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
@@ -311,7 +311,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655_SetRegister
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tw9910_mask_set
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910_SizeSetup
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 
 <P><STRONG><a name="[78]"></a>DCMI_TW9910_SizeSetup</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, dcmi_ov9655.o(.text))
@@ -319,7 +319,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_SingleRandomWrite
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 
 <P><STRONG><a name="[8e]"></a>DCMI_OV9655_SetRegister</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, dcmi_ov9655.o(.text), UNUSED)
@@ -338,7 +338,7 @@ Global Symbols
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_AcknowledgeConfig
 </UL>
 <BR>[Called By]<UL><LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tw9910_mask_set
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 
 <P><STRONG><a name="[77]"></a>tw9910_mask_set</STRONG> (Thumb, 40 bytes, Stack size 24 bytes, dcmi_ov9655.o(.text))
@@ -347,7 +347,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_SingleRandomWrite
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_SingleRandomRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 </UL>
 
 <P><STRONG><a name="[7b]"></a>init_USART1</STRONG> (Thumb, 122 bytes, Stack size 48 bytes, usart.o(.text))
@@ -369,7 +369,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART_SendData
 </UL>
 <BR>[Called By]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_jpeg
 </UL>
 
@@ -677,7 +677,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_USART1
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_GPIO_parallel
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_Config
 </UL>
@@ -710,7 +710,7 @@ Global Symbols
 
 <P><STRONG><a name="[69]"></a>GPIO_PinAFConfig</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_USART1
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_Config
 </UL>
@@ -774,7 +774,7 @@ Global Symbols
 <P><STRONG><a name="[67]"></a>RCC_AHB1PeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_USART1
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_GPIO_parallel
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_Config
 </UL>
@@ -787,7 +787,7 @@ Global Symbols
 
 <P><STRONG><a name="[71]"></a>RCC_APB1PeriphClockCmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_rcc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_USART1
-<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 </UL>
 
@@ -833,7 +833,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphResetCmd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 </UL>
 
@@ -842,14 +842,14 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_GetClocksFreq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 </UL>
 
 <P><STRONG><a name="[11a]"></a>I2C_StructInit</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, stm32f4xx_i2c.o(.text), UNUSED)
 
 <P><STRONG><a name="[73]"></a>I2C_Cmd</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, stm32f4xx_i2c.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR><BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C1_Config
 </UL>
 
@@ -1211,7 +1211,7 @@ Global Symbols
 <P><STRONG><a name="[63]"></a>__2sprintf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0sprintf$5))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2sprintf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_OV9655Config
+<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DCMI_TW9910Config
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_jpeg
 </UL>
 

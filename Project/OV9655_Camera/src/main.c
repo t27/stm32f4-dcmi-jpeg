@@ -35,7 +35,7 @@ EXTI_InitTypeDef   EXTI_InitStructure;
 uint8_t imagearray[FULLIMAGESIZE*2];//UYVY needs 2 bytes per pixel
 static uint8_t frame_done;
 /* Private function prototypes -----------------------------------------------*/
-uint8_t DCMI_OV9655Config(void);
+uint8_t DCMI_TW9910Config(void);
 void DCMI_Config(void);
 void I2C1_Config(void);
 void EXTILine0_Config(void);
@@ -95,7 +95,7 @@ int main(void)
   /*Camera configuration */
   
   // ****INIT the TW9910 in the following function
-  if (DCMI_OV9655Config() == 0x00)//configures pins of DCMI,I2C and DMA and the camera settings, if it returns a positive response
+  if (DCMI_TW9910Config() == 0x00)//configures pins of DCMI,I2C and DMA and the camera settings, if it returns a positive response
   {
       //Successful
    // int fr=0;
@@ -190,7 +190,7 @@ int main(void)
   * @retval 0x00 Camera module configured correctly 
   *         0xFF Camera module configuration failed
   */
-uint8_t DCMI_OV9655Config(void)
+uint8_t DCMI_TW9910Config(void)
 {
     uint8_t readvalue;
     char str[8];

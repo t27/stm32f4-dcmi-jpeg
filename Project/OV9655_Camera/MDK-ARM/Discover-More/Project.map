@@ -625,7 +625,7 @@ Image Symbol Table
     DCMI_Config                              0x080001d3   Thumb Code   372  main.o(.text)
     Delay                                    0x08000347   Thumb Code    12  main.o(.text)
     I2C1_Config                              0x08000353   Thumb Code   142  main.o(.text)
-    DCMI_OV9655Config                        0x080003e1   Thumb Code   352  main.o(.text)
+    DCMI_TW9910Config                        0x080003e1   Thumb Code   352  main.o(.text)
     main                                     0x08000541   Thumb Code   384  main.o(.text)
     DMA2_Stream1_IRQHandler                  0x080006c1   Thumb Code    44  main.o(.text)
     TimingDelay_Decrement                    0x080006ed   Thumb Code    18  main.o(.text)
