@@ -76,19 +76,27 @@ int TXEval(){
     return ((GPIOB->IDR & 0x0008)>>3);
 }
 
-void writeParallelFTDIdata(uint8_t data){
-     if(!(TXEval()))
+void writeParallelFTDIdata(uint8_t* data){
+    int wrhigh=1;
+    int i;
+    while(wrhigh!=0) {
+    if(!(TXEval()))
       {      
             //write data to gpio port (8 bits)  
-            GPIO_Write(GPIOD,data);    
+            GPIO_Write(GPIOD,*data);  
+            for(i=0;i<50;i++);          
             //set wr to low
             GPIO_WriteBit(GPIOC,GPIO_Pin_12,Bit_RESET);
+         // for(i=0;i<50;i++);
+          GPIO_WriteBit(GPIOC,GPIO_Pin_12,Bit_SET); 
+          wrhigh=0;
       } 
-          //wait for TX to go low
-      if((TXEval()))
-      {       
-         GPIO_WriteBit(GPIOC,GPIO_Pin_12,Bit_SET); 
-      }
+//          //wait for TX to go low
+//      if((TXEval()))
+//      {       
+//         
+//      }
+  }
 }
 
 

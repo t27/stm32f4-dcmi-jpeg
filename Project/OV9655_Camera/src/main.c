@@ -10,7 +10,7 @@
 #include "usart.h"
 #include "dct.h"
 #include "jpegenc.h"
-
+#include "parallelport.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -56,6 +56,7 @@ void write_jpeg(const unsigned char * _buffer,const unsigned int    _n)
 	while(i<_n){
 		sprintf(s,"%x,",_buffer[i]);
         USART_puts(USART2,s);
+        writeParallelFTDIdata((uint8_t*)&(_buffer[i]));
 		i++;
 	}
 	;
@@ -70,6 +71,7 @@ int main(void)
        system_stm32f4xx.c file
      */
   /* SysTick end of count event each 10ms */
+    uint8_t d=0xaf;
 #ifndef  YUVDEBUG
   unsigned int line;
 #endif   
@@ -77,9 +79,10 @@ int main(void)
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
   
     init_USART1(2000000);//1048576);//
-    
+    init_GPIO_parallel();
     USART_puts(USART2,"\r\nLoaded,");
-    
+     writeParallelFTDIdata(&d);
+
 //    while(1){
 //        USART_puts(USART2,"jpeg2\n");
 //        USART_puts(USART2,"12,fd,ff,34,3f,f4,0,1,a,33,43,23,23,\n");
@@ -97,8 +100,11 @@ int main(void)
       //Successful
    // int fr=0;
     USART_puts(USART2,"InTW9910\r\n");
-
-
+      d=0x33;
+    writeParallelFTDIdata(&d);
+      d=0xff;
+    writeParallelFTDIdata(&d);
+    
     /* Enable DMA transfer */
     DMA_Cmd(DMA2_Stream1, ENABLE);
 
@@ -113,7 +119,7 @@ int main(void)
 //    int i;
 //    Delay(50);
         
-      if (frame_done) {
+      if (frame_done && (d==0xff)) {
 #ifdef YUVDEBUG 
           char s[5];
 
@@ -124,6 +130,11 @@ int main(void)
           DCMI_CaptureCmd(DISABLE);
 #ifndef YUVDEBUG
         USART_puts(USART2,"jpg\r\n");
+          d=0xff;
+    writeParallelFTDIdata(&d);
+    writeParallelFTDIdata(&d);
+    writeParallelFTDIdata(&d);
+    
          huffman_start(IMG_HEIGHT & -8, IMG_WIDTH & -8);
        huffman_resetdc();
        
@@ -159,6 +170,7 @@ int main(void)
 //USART_puts(USART2,"\njpegends\n");
             
            DCMI_CaptureCmd(ENABLE);
+//           d=0;
            frame_done = 0;
       
       }

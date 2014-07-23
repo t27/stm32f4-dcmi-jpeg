@@ -10,5 +10,5 @@ void init_GPIO_parallel(void);
 
 //Read TXE Value
 int TXEval(void);
-void writeParallelFTDIdata(uint8_t data);
+void writeParallelFTDIdata(uint8_t* data);
 

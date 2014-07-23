@@ -45,3 +45,4 @@
 .\discover-more\main.o: ..\inc\usart.h
 .\discover-more\main.o: ..\dct.h
 .\discover-more\main.o: ..\jpegenc.h
+.\discover-more\main.o: ..\parallelport.h
